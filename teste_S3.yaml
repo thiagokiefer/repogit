@@ -1,0 +1,72 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: Teste de tags para remediaçao de S3 publico
+
+Parameters:
+  BucketS3Name:
+    Description: Nome do S3 Bucket
+    Type: String
+    Default: mybuckets3publicteste
+
+Resources:
+  MyS3PublicBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub ${AWS::Region}-${AWS::AccountId}-${BucketS3Name}-naoremediar
+      Tags:
+        - Key: sec-pc-aws-s3-547
+          Value: RITM123456
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: false
+        BlockPublicPolicy: false
+        IgnorePublicAcls: false
+        RestrictPublicBuckets: false
+        
+  MyS3PublicBucket2:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub ${AWS::Region}-${AWS::AccountId}-${BucketS3Name}2-naoremediar
+      Tags:
+        - Key: sec-pc-aws-s3-547
+          Value: RITM654321
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: false
+        BlockPublicPolicy: false
+        IgnorePublicAcls: false
+        RestrictPublicBuckets: false
+
+  MyS3PublicBucket3:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub ${AWS::Region}-${AWS::AccountId}-${BucketS3Name}3-remediar
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: false
+        BlockPublicPolicy: false
+        IgnorePublicAcls: false
+        RestrictPublicBuckets: false
+
+  MyS3PublicBucket4:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub ${AWS::Region}-${AWS::AccountId}-${BucketS3Name}4-remediar
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: false
+        BlockPublicPolicy: false
+        IgnorePublicAcls: false
+        RestrictPublicBuckets: false    
+
+Outputs:
+  OutputBucketName:
+    Description: Nome do Bucket S3 a nao ser remediado pelo Prisma
+    Value: !Ref MyS3PublicBucket
+
+  OutputBucketName2:
+    Description: Nome do segundo Bucket S3 a nao ser remediado pelo Prisma
+    Value: !Ref MyS3PublicBucket2
+
+  OutputBucketName3:
+    Description: Nome do terceiro Bucket S3 a ser remediado pelo Prisma
+    Value: !Ref MyS3PublicBucket3
+
+  OutputBucketName4:
+    Description: Nome do quarto Bucket S3 a ser remediado pelo Prisma
+    Value: !Ref MyS3PublicBucket4
